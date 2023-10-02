@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { JwtPayload, verify } from "jsonwebtoken";
 
 export const authenticationGuard = (
-  req: Request<{ user: string | JwtPayload }, {}, {}, {}>,
+  req,
   res: Response,
   next: NextFunction
 ) => {
