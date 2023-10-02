@@ -1,4 +1,5 @@
 
+import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 const bookSchema = new mongoose.Schema({
@@ -7,7 +8,7 @@ const bookSchema = new mongoose.Schema({
   pages: Number,
   image: String,
   author: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: ObjectId,
     ref: "authors"
   }
 });
