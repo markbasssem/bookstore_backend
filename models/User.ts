@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   username: String,
   type: String,
   hashedPass: String,
-  wishlist: [{
+  cart: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "books"
   }]
