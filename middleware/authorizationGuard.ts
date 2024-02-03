@@ -6,7 +6,7 @@ export const authorizationGuard = (
   res: Response,
   next: NextFunction
 ) => {
-    authenticationGuard(req, res, next);
-    if(!(req.params.user.type === "Admin")) return res.status(403).send("Invalid role")
+    // authenticationGuard(req, res, next);
+    if(!(req.params.user) || !(req.params.user.type === "Admin")) return res.status(403).send("Invalid role")
     next()
 };
