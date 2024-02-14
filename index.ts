@@ -7,6 +7,10 @@ import users from "./routes/users";
 import user from "./routes/user";
 import { logger } from "./middleware/logger";
 import cart from "./routes/cart";
+import dotenv from 'dotenv';
+dotenv.config();
+
+const CONNECTION = process.env.CONNECTION_STRING
 
 const app = express();
 
@@ -21,7 +25,7 @@ app.use("/auth", auth);
 app.use("/users", users);
 
 mongoose
-  .connect("mongodb://localhost:27017/bookstore")
+  .connect(CONNECTION) 
   .then(() => {
     app.listen(3000, () => console.log("App listening"));
   })
