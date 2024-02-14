@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { JwtPayload, verify } from "jsonwebtoken";
+import { verify } from "jsonwebtoken";
 
 export const authenticationGuard = (
   req,

@@ -1,6 +1,5 @@
 import { ObjectId } from "mongodb";
 import { Request, Response, NextFunction } from "express";
-import { JwtPayload } from "jsonwebtoken";
 
 export const validateID = (
   req: Request,

@@ -23,12 +23,12 @@ auth.post("/signin", async (req: Request, res: Response) => {
   const valid = await compare(password, user.hashedPass);
   if (!valid) return res.status(400).send("Invalid pass");
 
-  const token = sign({ user }, "key");
+  const token = sign({ username: user.username, pass: user.hashedPass }, "key");
   const tempObj = user.toObject();
   delete tempObj._id;
   delete tempObj.hashedPass;
   tempObj["token"] = token
-  console.log("Sending", tempObj);
+  // console.log("Sending", tempObj);
   res.header("x-auth-token", token).send(tempObj);
 });
 auth.post("/signup", async (req: Request, res: Response) => {
@@ -37,6 +37,7 @@ auth.post("/signup", async (req: Request, res: Response) => {
   const type = req.body.type;
   const email = req.body.email
   const no = req.body.no
+  const photo = req.body.photo
 
   const isExists = await User.findOne({ username: username });
   if (isExists) return res.status(401).send("Username already exists");
@@ -44,7 +45,7 @@ auth.post("/signup", async (req: Request, res: Response) => {
   const salt = await genSalt(10);
   const hashedPass = await hash(password, salt);
 
-  const user = new User({ username, hashedPass, type, email, no });
+  const user = new User({ username, hashedPass, type, email, no, photo });
   const result = await user.save();
   res.send(result);
 });
