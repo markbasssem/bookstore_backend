@@ -4,10 +4,13 @@ const userSchema = new mongoose.Schema({
   username: String,
   type: String,
   hashedPass: String,
+  money: Number,
   cart: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "books"
-  }]
+  }],
+  mobile_no: String,
+  email: String
 });
 
 const User = mongoose.model("users", userSchema);
