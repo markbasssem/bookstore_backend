@@ -7,8 +7,10 @@ import users from "./routes/users";
 import user from "./routes/user";
 import { logger } from "./middleware/logger";
 import cart from "./routes/cart";
+
 const app = express();
-app.use(json());
+
+app.use(json({limit: "10mb"}));
 app.use(logger);
 
 app.use("/", user);
