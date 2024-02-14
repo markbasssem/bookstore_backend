@@ -23,7 +23,7 @@ auth.post("/signin", async (req: Request, res: Response) => {
   const valid = await compare(password, user.hashedPass);
   if (!valid) return res.status(400).send("Invalid pass");
 
-  const token = sign({ username: user.username, pass: user.hashedPass }, "key");
+  const token = sign({ username: user.username, _id: user._id}, "key");
   const tempObj = user.toObject();
   delete tempObj._id;
   delete tempObj.hashedPass;

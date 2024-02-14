@@ -14,6 +14,8 @@ user.get(
   ) => {
     const id = req.params.user._id;
 
+    console.log(`user route: finding user by id: ${id}`)
+
     const user = await User.findById(id).select("-hashedPass -__v -_id");
 
     res.send(user);

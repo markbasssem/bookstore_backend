@@ -11,8 +11,9 @@ export const authenticationGuard = (
 
   try {
     const decoded = verify(token, "key");
-    req.params.user = decoded; //
-    req.params.user = req.params.user["user"]; // comment if you want to get the token creation time
+    req.params.user = decoded;
+    // req.params.user = req.params.user["user"]; // comment if you want to get the token creation time
+    console.log("AuthenticationGuard: decoded user", req.params.user)
     next();
   } catch (e) {
     res.status(400).send("Invalid token");
