@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema({
     ref: "books"
   }],
   mobile_no: String,
-  email: String
+  email: String,
+  photo: String
 });
 
 const User = mongoose.model("users", userSchema);
