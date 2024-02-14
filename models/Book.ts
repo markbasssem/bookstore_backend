@@ -10,7 +10,8 @@ const bookSchema = new mongoose.Schema({
   author: {
     type: ObjectId,
     ref: "authors"
-  }
+  },
+  price: Number
 });
 
 const Book = mongoose.model("books", bookSchema);

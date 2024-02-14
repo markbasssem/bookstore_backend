@@ -27,17 +27,11 @@ books.get("/:id", [validateID], async (req: Request, res: Response) => {
 });
 
 books.post("", async (req, res) => {
-  //   const book = req.body;
-  //   console.log(book);
-  const book = new Book({
-    title: "New Book",
-    pages: 1000,
-    image:
-      "https://as1.ftcdn.net/v2/jpg/05/08/02/74/1000_F_508027415_4QUICcSCBjIkykkZPVFrsF5gaVEuYvmB.jpg",
-    rating: 10,
-  });
+  const book = new Book(req.body);
+  console.log(book);
   const result = await book.save();
-  console.log(result);
+  // console.log(result);
+  res.send(result)
 });
 
 books.delete("/:id", async (req, res) => {
