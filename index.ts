@@ -10,11 +10,12 @@ import cart from "./routes/cart";
 import dotenv from 'dotenv';
 dotenv.config();
 
-const CONNECTION = process.env.CONNECTION_STRING
+const env = process.env.NODE_ENV || 'dev';
+const CONNECTION = env === "dev" ? process.env.CONNECTION_STRING_DEV : process.env.CONNECTION_STRING
 
 const app = express();
 
-app.use(json({limit: "10mb"}));
+app.use(json({ limit: "10mb" }));
 app.use(logger);
 
 app.use("/", user);
@@ -25,9 +26,9 @@ app.use("/auth", auth);
 app.use("/users", users);
 
 mongoose
-  .connect(CONNECTION) 
+  .connect(CONNECTION)
   .then(() => {
-    app.listen(3000, () => console.log("App listening"));
+    app.listen(3000, () => console.log(`App listening on ${env} and connected to ${CONNECTION}`));
   })
   .catch((err) => {
     console.log(err);
