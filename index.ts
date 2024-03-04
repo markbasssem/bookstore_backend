@@ -8,6 +8,7 @@ import user from "./routes/user";
 import { logger } from "./middleware/logger";
 import cart from "./routes/cart";
 import dotenv from 'dotenv';
+import payment from "./routes/payment";
 dotenv.config();
 
 const env = process.env.NODE_ENV || 'dev';
@@ -24,6 +25,7 @@ app.use("/books", books);
 app.use("/authors", authors);
 app.use("/auth", auth);
 app.use("/users", users);
+app.use("/payment-sheet", payment)
 
 mongoose
   .connect(CONNECTION)
